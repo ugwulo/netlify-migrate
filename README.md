@@ -63,3 +63,24 @@ The npm `build` script runs commands to not only build the application, but also
 ```
 
 > **Note:** If you use the [Azure Static Web Apps CLI](https://docs.microsoft.com/azure/static-web-apps/local-development), copy the *staticwebapp.config.json* file to the *out* folder, and start the CLI from the *out* folder.
+
+
+{
+    "navigationFallback": {
+      "rewrite": "index.html",
+      "exclude": ["*.{png,jpg,gif,svg}", "*.css"]
+    },
+
+    "routes": [
+      {
+        "route": "/*",
+        "allowedRoles": ["authenticated"]
+      }
+    ],
+    "responseOverrides": {
+      "401": {
+        "statusCode": 302,
+        "redirect": "/.auth/login/aad"
+      }
+    }
+}
